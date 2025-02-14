@@ -125,3 +125,20 @@ function addScreenShare() {
             alert('Impossible de partager l\'écran.');
         });
 }
+
+// Fonction pour afficher les utilisateurs connectés
+function afficherUtilisateursConnectes() {
+    peer.listAllPeers(function(peers) {
+        let userList = document.getElementById('userList');
+        userList.innerHTML = ''; // Vider la liste avant de la remplir
+
+        peers.forEach(function(peerId) {
+            let listItem = document.createElement('li');
+            listItem.textContent = peerId;
+            userList.appendChild(listItem);
+        });
+    });
+}
+
+// Appeler la fonction pour afficher les utilisateurs connectés toutes les 5 secondes
+setInterval(afficherUtilisateursConnectes, 5000);
